@@ -9,9 +9,10 @@ const navItems = [
   { name: "Home", href: "#home" },
   { name: "Education", href: "#education" },
   { name: "Projects", href: "#projects" },
-  { name: "Achievements", href: "#achievements" },
-  { name: "Papers", href: "#papers" },
   { name: "Skills", href: "#skills" },
+  { name: "Certifications", href: "#certifications" },
+  { name: "Achievements", href: "#achievements" },
+  { name: "Contributions", href: "#additional-contributions" },
   { name: "Contact", href: "#contact" },
 ]
 
@@ -68,7 +69,7 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative">
-                SS
+                DV
                 <motion.span
                   className="absolute -inset-2 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 blur-xl opacity-30 -z-10"
                   animate={{

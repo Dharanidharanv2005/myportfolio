@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 
 export function Hero() {
-  const fullName = "Srimathi Senthil" // single space between names
+  const fullName = "Dharanidharan V"
   const [displayedName, setDisplayedName] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -57,24 +57,28 @@ export function Hero() {
             </h1>
 
             <p className="text-xl md:text-2xl text-white mt-3 drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] font-semibold">
-              Aspiring Full-Stack Developer
+              Aspiring Software Engineer
             </p>
 
             {/* Contact Info */}
             <div className="flex flex-wrap justify-center items-center gap-6 mt-6 text-white text-base md:text-lg">
-              <a href="tel:+917305587479" className="flex items-center gap-2 hover:text-purple-300 transition-colors">
-                <Phone className="w-5 h-5" /> +91 7305587479
+              <a href="tel:+919994035718" className="flex items-center gap-2 hover:text-purple-300 transition-colors">
+                <Phone className="w-5 h-5" /> +91 9994035718
               </a>
-              <a href="mailto:srissa2006@gmail.com" className="flex items-center gap-2 hover:text-purple-300 transition-colors">
-                <Mail className="w-5 h-5" /> srissa2006@gmail.com
+              <a href="mailto:dharanidharanvenugopal123@gmail.com" className="flex items-center gap-2 hover:text-purple-300 transition-colors">
+                <Mail className="w-5 h-5" /> dharanidharanvenugopal123@gmail.com
               </a>
-              <a href="https://www.linkedin.com/in/srimathi-senthil-a6354037b" target="_blank" className="hover:text-blue-400 transition-colors">
+            </div>
+
+            {/* Social Media Icons */}
+            <div className="flex gap-4 mt-6 text-white">
+              <a href="https://www.linkedin.com/in/dharanidharan-v-66b399334" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="https://github.com/Srimathi2036-sm" target="_blank" className="hover:text-gray-300 transition-colors">
+              <a href="https://github.com/Dharanidharanv2005" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="https://leetcode.com/u/Srimathi23CSR214/" target="_blank" className="hover:text-yellow-400 transition-colors">
+              <a href="https://leetcode.com/u/Dharani718/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">
                 <Code className="w-5 h-5" />
               </a>
             </div>
@@ -84,15 +88,15 @@ export function Hero() {
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center mt-6 md:mt-0">
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl">
               <img
-                src="/profile.jpg"
-                alt="Srimathi Senthil"
+                src="/profile-dharanidharan.png"
+                alt="Dharanidharan V"
                 className="w-full h-full object-cover"
               />
             </div>
 
             {/* Buttons */}
             <div className="flex gap-6 mt-6 flex-wrap justify-center">
-              <a href="/resume.pdf.pdf" download>
+              <a href="/resume-dharanidharan.pdf" download>
                 <Button className="flex items-center gap-2 bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-500 hover:to-teal-600 text-white">
                   <Download className="w-4 h-4" /> Download Resume
                 </Button>

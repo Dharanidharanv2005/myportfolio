@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Trophy, Award, Medal, Sparkles, Star } from "lucide-react"
+import { Award } from "lucide-react"
 
 export function Achievements() {
   const ref = useRef(null)
@@ -11,44 +11,14 @@ export function Achievements() {
 
   const achievements = [
     {
-      title: "AI BYTES India Hackathon",
-      prize: "1st Prize",
-      project: "Visualizing Math - AI for Smarter Learning",
-      institution: "Kongu Engineering College",
-      icon: Trophy,
-      color: "from-yellow-400 to-orange-500",
-      medal: "🥇",
-      certificate: "/ach1.jpg",
-    },
-    {
-      title: "MCA 12-Hour Hackathon",
-      prize: "2nd Prize",
-      project: "Green Lifestyle And Finance Tracker",
-      institution: "Kongu Engineering College",
-      icon: Medal,
-      color: "from-gray-400 to-gray-600",
-      medal: "🥈",
-      certificate: "/ach2.jpg",
-    },
-    {
-      title: "Poster Design Presentation",
-      prize: "3rd Prize",
-      project: "Healthcare",
-      institution: "Kongu Engineering College",
+      title: "FixForward Ideathon 2026",
+      prize: "Finalist",
+      project: "Recognized for innovation in Round 2",
+      institution: "HYRUP FixForward Ideathon",
       icon: Award,
       color: "from-orange-400 to-red-500",
-      medal: "🥉",
-      certificate: "/ach3.jpg",
-    },
-    {
-      title: "Image Prompting",
-      prize: "2nd Prize",
-      project: "AI – Adobe Firefly",
-      institution: "Kongu Engineering College",
-      icon: Award,
-      color: "from-purple-400 to-pink-500",
-      medal: "🎨",
-      certificate: "/ach4.jpg",
+      medal: "🏆",
+      certificate: "/achievement-fixforward.png",
     },
   ]
 
@@ -73,7 +43,7 @@ export function Achievements() {
         </motion.h2>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-1 gap-10">
           {achievements.map((achievement, index) => (
             <motion.a
               key={index}

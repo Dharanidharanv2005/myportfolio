@@ -2,13 +2,12 @@
 
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
-import { Objective } from "@/components/objective"
 import { Education } from "@/components/education"
-import { Achievements } from "@/components/achievements"
 import { Projects } from "@/components/projects"
-import { Papers } from "@/components/papers"
 import { Skills } from "@/components/skills"
 import { Certifications } from "@/components/certifications"
+import { Achievements } from "@/components/achievements"
+import { AdditionalContributions } from "@/components/additional-contributions"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { CustomCursor } from "@/components/custom-cursor"
@@ -22,13 +21,12 @@ export default function Home() {
       <div className="relative min-h-screen overflow-x-hidden">
         <Navbar />
         <Hero />
-        <Objective />
         <Education />
-        <Achievements />
         <Projects />
-        <Papers />
         <Skills />
         <Certifications />
+        <Achievements />
+        <AdditionalContributions />
         <Contact />
         <Footer />
       </div>

@@ -89,9 +89,9 @@ export function Objective() {
               drop-shadow-[0_3px_18px_rgba(0,0,0,0.45)]
             "
           >
-            Aspiring Full-Stack Developer skilled in ReactJS, NodeJS, Python, and AI/ML,
-            seeking opportunities to contribute to software development, database management,
-            and AI-powered solutions.
+            Aspiring Software Engineer with a strong foundation in Computer Science and hands-on
+            experience in MERN stack and MongoDB. Seeking an opportunity to apply my skills,
+            learn continuously, and contribute to organizational success.
           </motion.p>
         </motion.div>
       </div>

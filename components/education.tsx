@@ -10,15 +10,15 @@ export function Education() {
 
   const education = [
     {
-      degree: "B.E. Computer Science Engineering",
+      degree: "B.E. Computer Science and Design",
       institution: "Kongu Engineering College",
-      score: "CGPA: 7.80 (Till Now)",
+      score: "CGPA: 7.99 (till 5th sem) | 2023 - 2027",
       icon: GraduationCap,
     },
     {
       degree: "Higher Secondary Education",
-      institution: "",
-      score: "92%",
+      institution: "Bharathi Vidhyalaya Matric Hr Sec School",
+      score: "HSC - 86% | 2023",
       icon: BookOpen,
     },
   ]

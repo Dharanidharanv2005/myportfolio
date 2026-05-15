@@ -2,41 +2,39 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
-import { Sparkles, Star, Code, Zap, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { Sparkles, Star, Zap, ChevronLeft, ChevronRight } from "lucide-react"
 
-export function Projects() {
+export function AdditionalContributions() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
 
-  const projects = [
+  const contributions = [
     {
-      title: "Vehicle Management System",
-      description:
-        "Developed a web-based vehicle management system to track maintenance and service schedules.",
-      tech: ["HTML", "CSS", "Python (Flask)", "MySQL"],
-      image: "/project-vehicle.png",
-      gradient: "from-blue-500 to-cyan-500",
-      github: "https://vehicle-management-system-0myc.onrender.com/",
-    },
-    {
-      title: "Password Manager/Generator",
-      description: "Developed a secure password manager and generator using the MERN stack with RESTful APIs.",
-      tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
-      image: "/project-password-manager.png",
+      title: "Gender Equality Club",
+      role: "Secretary",
+      college: "Kongu Engineering College",
+      date: "August 2025",
+      image: "/additional-contribution-1.png",
       gradient: "from-purple-500 to-pink-500",
-      github: "https://password-manager-frontend-iub1.onrender.com",
     },
     {
-      title: "E-Commerce Platform - TheBoysMensWear",
-      description:
-        "Responsive e-commerce website for men’s fashion with a clean and user-friendly interface.",
-      tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-      image: "/project-ecommerce.png",
-      gradient: "from-green-500 to-emerald-500",
-      github: "https://e-commerce-theboysmenswear.vercel.app/",
+      title: "Gender Equality Club",
+      role: "Secretary",
+      college: "Kongu Engineering College",
+      date: "August 2025",
+      image: "/additional-contribution-2.png",
+      gradient: "from-pink-500 to-rose-500",
+    },
+    {
+      title: "Gender Equality Club",
+      role: "Secretary",
+      college: "Kongu Engineering College",
+      date: "August 2025",
+      image: "/additional-contribution-3.png",
+      gradient: "from-rose-500 to-purple-500",
     },
   ]
 
@@ -45,11 +43,11 @@ export function Projects() {
     if (!isPaused) {
       const timer = setInterval(() => {
         setDirection(1)
-        setCurrentIndex((prev) => (prev + 1) % projects.length)
+        setCurrentIndex((prev) => (prev + 1) % contributions.length)
       }, 4000)
       return () => clearInterval(timer)
     }
-  }, [isPaused, projects.length])
+  }, [isPaused, contributions.length])
 
   const slideVariants = {
     enter: (direction) => ({
@@ -78,8 +76,8 @@ export function Projects() {
     setDirection(newDirection)
     setCurrentIndex((prev) => {
       let next = prev + newDirection
-      if (next < 0) next = projects.length - 1
-      if (next >= projects.length) next = 0
+      if (next < 0) next = contributions.length - 1
+      if (next >= contributions.length) next = 0
       return next
     })
   }
@@ -93,18 +91,18 @@ export function Projects() {
     duration: 3 + Math.random() * 3,
   }))
 
-  const currentProject = projects[currentIndex]
+  const currentContribution = contributions[currentIndex]
 
   return (
     <section 
-      id="projects" 
-      className="py-32 px-4 relative overflow-hidden bg-gradient-to-b from-slate-950 via-indigo-950/30 to-slate-950"
+      id="additional-contributions" 
+      className="py-32 px-4 relative overflow-hidden bg-gradient-to-b from-slate-950 via-purple-950/30 to-slate-950"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Animated background orbs */}
       <motion.div 
-        className="absolute top-10 left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
+        className="absolute top-10 left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
         animate={{ 
           scale: [1, 1.3, 1],
           opacity: [0.2, 0.4, 0.2],
@@ -114,7 +112,7 @@ export function Projects() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute bottom-10 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+        className="absolute bottom-10 right-20 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"
         animate={{ 
           scale: [1.2, 1, 1.2],
           opacity: [0.4, 0.2, 0.4],
@@ -124,7 +122,7 @@ export function Projects() {
         transition={{ duration: 10, repeat: Infinity, delay: 1.5, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute top-1/3 right-1/4 w-96 h-96 bg-pink-500/15 rounded-full blur-3xl"
+        className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl"
         animate={{ 
           scale: [1, 1.4, 1],
           x: [0, 70, 0],
@@ -180,7 +178,7 @@ export function Projects() {
           className="text-center mb-24 relative"
         >
           {/* Orbiting icons */}
-          {[Code, Star, Zap].map((Icon, i) => (
+          {[Star, Zap, Sparkles].map((Icon, i) => (
             <motion.div
               key={i}
               className="absolute left-1/2 top-1/2"
@@ -196,7 +194,7 @@ export function Projects() {
                 transformOrigin: `${100 + i * 30}px 0px`,
               }}
             >
-              <Icon className="w-4 h-4 text-blue-400 opacity-50" />
+              <Icon className="w-4 h-4 text-purple-400 opacity-50" />
             </motion.div>
           ))}
 
@@ -226,7 +224,7 @@ export function Projects() {
             </motion.div>
             
             <motion.h2
-              className="text-5xl md:text-7xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(147,51,234,0.5)]"
+              className="text-5xl md:text-7xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(168,85,247,0.5)]"
               animate={{
                 backgroundPosition: ["0%", "100%", "0%"],
               }}
@@ -239,7 +237,7 @@ export function Projects() {
                 backgroundSize: "200% 100%",
               }}
             >
-              Projects
+              Contributions
             </motion.h2>
           </motion.div>
 
@@ -247,12 +245,12 @@ export function Projects() {
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 1.2, delay: 0.3 }}
-            className="h-1 w-40 mx-auto mt-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"
+            className="h-1 w-40 mx-auto mt-6 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-full"
           />
 
           {/* Pulsing glow */}
           <motion.div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl -z-10"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl -z-10"
             animate={{
               scale: [1, 1.6, 1],
               opacity: [0.3, 0.6, 0.3],
@@ -266,7 +264,7 @@ export function Projects() {
         </motion.div>
 
         {/* Carousel Container */}
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-4xl mx-auto">
           {/* Navigation Buttons */}
           <motion.button
             onClick={() => paginate(-1)}
@@ -287,7 +285,7 @@ export function Projects() {
           </motion.button>
 
           {/* Carousel Cards */}
-          <div className="relative h-[600px] flex items-center justify-center" style={{ perspective: "2000px" }}>
+          <div className="relative h-[500px] flex items-center justify-center" style={{ perspective: "2000px" }}>
             <AnimatePresence initial={false} custom={direction} mode="popLayout">
               <motion.div
                 key={currentIndex}
@@ -305,10 +303,7 @@ export function Projects() {
                 className="absolute w-full max-w-2xl"
                 style={{ transformStyle: "preserve-3d" }}
               >
-                <motion.a
-                  href={currentProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.div
                   className="block"
                   whileHover={{ scale: 1.05, y: -10 }}
                   transition={{ duration: 0.3 }}
@@ -316,7 +311,7 @@ export function Projects() {
                   <div className="relative">
                     {/* Animated outer glow */}
                     <motion.div
-                      className={`absolute -inset-3 bg-gradient-to-br ${currentProject.gradient} rounded-3xl blur-2xl`}
+                      className={`absolute -inset-3 bg-gradient-to-br ${currentContribution.gradient} rounded-3xl blur-2xl`}
                       animate={{
                         opacity: [0.3, 0.6, 0.3],
                         scale: [1, 1.05, 1],
@@ -328,7 +323,7 @@ export function Projects() {
                     <motion.div
                       className="absolute -inset-1 rounded-3xl opacity-50"
                       style={{
-                        background: `conic-gradient(from 0deg, transparent, ${currentProject.gradient.split(' ')[3]}, transparent)`,
+                        background: `conic-gradient(from 0deg, transparent, ${currentContribution.gradient.split(' ')[3]}, transparent)`,
                       }}
                       animate={{
                         rotate: 360,
@@ -344,9 +339,9 @@ export function Projects() {
                       className="relative rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95 backdrop-blur-2xl border border-white/20 shadow-2xl overflow-hidden"
                     >
                       {/* Image with effects */}
-                      <div className="h-64 overflow-hidden relative">
+                      <div className="h-80 overflow-hidden relative">
                         <motion.div
-                          className={`absolute inset-0 bg-gradient-to-br ${currentProject.gradient} opacity-20 z-10`}
+                          className={`absolute inset-0 bg-gradient-to-br ${currentContribution.gradient} opacity-20 z-10`}
                         />
                         
                         <motion.div
@@ -358,8 +353,8 @@ export function Projects() {
                         />
 
                         <motion.img
-                          src={currentProject.image}
-                          alt={currentProject.title}
+                          src={currentContribution.image}
+                          alt={currentContribution.title}
                           className="w-full h-full object-cover"
                           animate={{
                             scale: [1, 1.1, 1],
@@ -395,7 +390,7 @@ export function Projects() {
                       {/* Content */}
                       <div className="p-8">
                         <motion.div
-                          className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${currentProject.gradient} opacity-10 blur-3xl rounded-full`}
+                          className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${currentContribution.gradient} opacity-10 blur-3xl rounded-full`}
                           animate={{
                             scale: [1, 1.3, 1],
                             opacity: [0.1, 0.2, 0.1],
@@ -407,7 +402,7 @@ export function Projects() {
                         />
 
                         <motion.h3 
-                          className="text-3xl font-bold mb-4 text-white"
+                          className="text-3xl font-bold mb-2 text-white"
                           animate={{
                             backgroundPosition: ["0%", "100%"],
                           }}
@@ -416,11 +411,11 @@ export function Projects() {
                             repeat: Infinity,
                           }}
                         >
-                          {currentProject.title}
+                          {currentContribution.title}
                         </motion.h3>
 
                         <motion.p 
-                          className="text-base text-gray-300 mb-6 leading-relaxed"
+                          className="text-lg text-gray-300 mb-2 font-semibold"
                           animate={{
                             opacity: [1, 0.85, 1],
                           }}
@@ -429,66 +424,37 @@ export function Projects() {
                             repeat: Infinity,
                           }}
                         >
-                          {currentProject.description}
+                          Role: {currentContribution.role}
                         </motion.p>
 
-                        <div className="flex flex-wrap gap-3 mb-6">
-                          {currentProject.tech.map((tech, i) => (
-                            <motion.span
-                              key={i}
-                              className={`px-4 py-2 text-sm rounded-full bg-gradient-to-r ${currentProject.gradient} text-white font-medium shadow-lg`}
-                              initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                              animate={{ 
-                                opacity: 1, 
-                                scale: 1,
-                                rotate: 0,
-                              }}
-                              transition={{ 
-                                delay: i * 0.1,
-                                type: "spring",
-                                stiffness: 200,
-                              }}
-                              whileHover={{ 
-                                scale: 1.15,
-                                y: -3,
-                                rotate: 5,
-                              }}
-                            >
-                              {tech}
-                            </motion.span>
-                          ))}
-                        </div>
-
-                        <motion.div 
-                          className={`w-full flex items-center justify-center gap-3 py-4 rounded-xl border border-white/20 bg-gradient-to-r ${currentProject.gradient} text-white font-bold shadow-lg relative overflow-hidden`}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.98 }}
+                        <motion.p 
+                          className="text-base text-purple-300 mb-2 font-medium"
+                          animate={{
+                            opacity: [1, 0.85, 1],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                          }}
                         >
-                          <motion.div
-                            className="absolute inset-0 bg-white/20"
-                            initial={{ x: "-100%" }}
-                            animate={{ x: "100%" }}
-                            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 0.5 }}
-                          />
-                          
-                          <span className="relative z-10 text-lg">View Project</span>
-                          
-                          <motion.div
-                            animate={{
-                              x: [0, 5, 0],
-                              y: [0, -3, 0],
-                            }}
-                            transition={{
-                              duration: 1,
-                              repeat: Infinity,
-                            }}
-                          >
-                            <ArrowUpRight className="w-5 h-5 relative z-10" />
-                          </motion.div>
-                        </motion.div>
+                          {currentContribution.date}
+                        </motion.p>
+
+                        <motion.p 
+                          className="text-base text-gray-400"
+                          animate={{
+                            opacity: [1, 0.85, 1],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                          }}
+                        >
+                          {currentContribution.college}
+                        </motion.p>
                       </div>
 
-                      {/* Project number */}
+                      {/* Contribution number */}
                       <motion.div
                         className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white font-bold"
                         animate={{
@@ -504,42 +470,34 @@ export function Projects() {
                       </motion.div>
                     </motion.div>
                   </div>
-                </motion.a>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Progress Indicators */}
-          <div className="flex justify-center gap-3 mt-12">
-            {projects.map((_, index) => (
+          {/* Pagination indicators */}
+          <motion.div 
+            className="flex justify-center gap-2 mt-12"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.6 }}
+          >
+            {contributions.map((_, index) => (
               <motion.button
                 key={index}
                 onClick={() => {
                   setDirection(index > currentIndex ? 1 : -1)
                   setCurrentIndex(index)
                 }}
-                className={`relative h-2 rounded-full transition-all ${
-                  index === currentIndex ? 'w-12' : 'w-2'
+                className={`h-2 rounded-full transition-all ${
+                  index === currentIndex
+                    ? "bg-gradient-to-r from-purple-500 to-pink-500 w-8"
+                    : "bg-white/30 w-2 hover:bg-white/50"
                 }`}
                 whileHover={{ scale: 1.2 }}
-              >
-                <motion.div
-                  className={`absolute inset-0 rounded-full ${
-                    index === currentIndex 
-                      ? `bg-gradient-to-r ${projects[index].gradient}` 
-                      : 'bg-white/30'
-                  }`}
-                  animate={{
-                    opacity: index === currentIndex ? [0.5, 1, 0.5] : 1,
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: index === currentIndex ? Infinity : 0,
-                  }}
-                />
-              </motion.button>
+              />
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

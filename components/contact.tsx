@@ -5,7 +5,10 @@ import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Send, Mail, Lock, Sparkles } from "lucide-react"
+import { Mail, Sparkles, MessageCircle } from "lucide-react"
+
+// ⚠️ UPDATE THIS with your WhatsApp number (include country code)
+const WHATSAPP_NUMBER = "919876543210" // Change this to your WhatsApp number
 
 export function Contact() {
   const ref = useRef(null)
@@ -13,31 +16,61 @@ export function Contact() {
 
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
     message: "",
+    name: "",
   })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Handle Email via FormSubmit
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!formData.email || !formData.message || !formData.name) {
+      alert("Please fill in all fields ❌")
+      return
+    }
+
+    setIsSubmitting(true)
+    
     try {
-      const res = await fetch("http://localhost:5000/api/contact/submit", {
+      const form = new FormData()
+      form.append("name", formData.name)
+      form.append("email", formData.email)
+      form.append("message", formData.message)
+      form.append("_captcha", "false")
+
+      const response = await fetch("https://formsubmit.co/dharanidharanvenugopal123@gmail.com", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: form,
       })
 
-      const data = await res.json()
-
-      if (data.success) {
-        alert("Details saved successfully ✅")
-        setFormData({ email: "", password: "", message: "" })
+      if (response.ok) {
+        alert("Email sent successfully! ✅")
+        setFormData({ email: "", message: "", name: "" })
       } else {
-        alert("Failed to save details ❌")
+        alert("Failed to send email ❌")
       }
     } catch (error) {
-      alert("Server error ❌")
+      alert("Error sending email ❌")
+    } finally {
+      setIsSubmitting(false)
     }
+  }
+
+  // Handle WhatsApp Message
+  const handleWhatsAppSubmit = () => {
+    if (!formData.message) {
+      alert("Please enter a message ❌")
+      return
+    }
+
+    const whatsappNumber = WHATSAPP_NUMBER.replace(/\D/g, "")
+    const encodedMessage = encodeURIComponent(
+      `Name: ${formData.name || "Not provided"}\nEmail: ${formData.email || "Not provided"}\n\nMessage: ${formData.message}`
+    )
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
+    window.open(whatsappUrl, "_blank")
   }
 
   return (
@@ -77,9 +110,7 @@ export function Contact() {
         </motion.h2>
 
         {/* GLASS FORM */}
-        <form
-          onSubmit={handleSubmit}
-          className="
+        <form className="
             p-10 rounded-[2rem]
             bg-white/10
             backdrop-blur-3xl
@@ -88,6 +119,31 @@ export function Contact() {
             space-y-6
           "
         >
+          {/* Name */}
+          <div>
+            <label className="flex gap-2 items-center text-slate-200 text-sm mb-2">
+              <Sparkles className="w-4 h-4 text-pink-300" /> Name
+            </label>
+            <Input
+              type="text"
+              placeholder="Your name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              required
+              className="
+                bg-transparent
+                border border-white/25
+                text-slate-100
+                placeholder:text-slate-400
+                rounded-full
+                backdrop-blur-xl
+                focus:ring-2 focus:ring-pink-400/40
+              "
+            />
+          </div>
+
           {/* Email */}
           <div>
             <label className="flex gap-2 items-center text-slate-200 text-sm mb-2">
@@ -95,6 +151,7 @@ export function Contact() {
             </label>
             <Input
               type="email"
+              placeholder="your@email.com"
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -112,36 +169,13 @@ export function Contact() {
             />
           </div>
 
-          {/* Password */}
-          <div>
-            <label className="flex gap-2 items-center text-slate-200 text-sm mb-2">
-              <Lock className="w-4 h-4 text-pink-300" /> Password
-            </label>
-            <Input
-              type="password"
-              value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-              required
-              className="
-                bg-transparent
-                border border-white/25
-                text-slate-100
-                placeholder:text-slate-400
-                rounded-full
-                backdrop-blur-xl
-                focus:ring-2 focus:ring-pink-400/40
-              "
-            />
-          </div>
-
           {/* Message */}
           <div>
             <label className="flex gap-2 items-center text-slate-200 text-sm mb-2">
               <Sparkles className="w-4 h-4 text-blue-300" /> Message
             </label>
             <textarea
+              placeholder="Your message here..."
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
@@ -160,20 +194,43 @@ export function Contact() {
             />
           </div>
 
-          {/* Button */}
-          <Button
-            type="submit"
-            className="
-              w-full py-6 text-lg
-              bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-blue-500/60
-              backdrop-blur-xl
-              rounded-full
-              hover:scale-[1.03]
-              transition
-            "
-          >
-            <Send className="mr-2" /> Send Message
-          </Button>
+          {/* Action Buttons */}
+          <div className="flex gap-4 flex-col sm:flex-row">
+            <Button
+              type="button"
+              onClick={handleEmailSubmit}
+              disabled={isSubmitting}
+              className="
+                flex-1 py-6 text-lg
+                bg-gradient-to-r from-purple-500/60 via-pink-500/60 to-blue-500/60
+                backdrop-blur-xl
+                rounded-full
+                hover:scale-[1.03]
+                transition
+                disabled:opacity-50
+                disabled:cursor-not-allowed
+              "
+            >
+              <Mail className="mr-2 w-5 h-5" /> 
+              {isSubmitting ? "Sending..." : "Send Email"}
+            </Button>
+
+            <Button
+              type="button"
+              onClick={handleWhatsAppSubmit}
+              className="
+                flex-1 py-6 text-lg
+                bg-gradient-to-r from-green-500/60 via-emerald-500/60 to-teal-500/60
+                backdrop-blur-xl
+                rounded-full
+                hover:scale-[1.03]
+                transition
+              "
+            >
+              <MessageCircle className="mr-2 w-5 h-5" /> 
+              Send WhatsApp
+            </Button>
+          </div>
         </form>
       </div>
     </section>

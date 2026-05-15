@@ -12,22 +12,36 @@ export function Certifications() {
   const certifications = [
     {
       title: "MongoDB Associate Developer",
-      issuer: "MongoDB",
-      year: "2024-25",
+      issuer: "MongoDB, Inc.",
+      year: "May 2025",
       icon: "🍃",
-      image: "/certificate1.jpg",
+      image: "/achievement-mongodb.png",
     },
     {
-      title: "Oracle Certified Professional",
+      title: "Oracle APEX Cloud Developer",
       issuer: "Oracle",
-      year: "2024-25",
+      year: "May 2025",
       icon: "🔴",
-      image: "/certificate2.jpg",
+      image: "/certifications/oracle-apex.pdf",
+    },
+    {
+      title: "Oracle Java SE17 Developer",
+      issuer: "Oracle",
+      year: "May 2026",
+      icon: "☕",
+      image: "/certifications/java-se17.pdf",
+    },
+    {
+      title: "Basics in Operating System",
+      issuer: "Cisco",
+      year: "April 2025",
+      icon: "🖥️",
+      image: "/certifications/cisco-operating-system.pdf",
     },
   ]
 
   return (
-    <section className="py-24 px-4 relative overflow-hidden">
+    <section id="certifications" className="py-24 px-4 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-black to-pink-900/40 blur-3xl -z-10" />
 
@@ -84,7 +98,10 @@ export function Certifications() {
                   {cert.year}
                 </p>
 
-                <button
+                <a
+                  href={cert.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setActiveCert(cert.image)}
                   className="w-full mt-auto flex items-center justify-center gap-2 py-3 rounded-xl
                   bg-gradient-to-r from-purple-600 to-pink-600
@@ -94,29 +111,11 @@ export function Certifications() {
                 >
                   <FileText className="w-5 h-5" />
                   View Certificate
-                </button>
+                </a>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Additional Contributions */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
-          className="mt-14 p-8 rounded-2xl
-          bg-gradient-to-br from-black/70 to-black/40
-          backdrop-blur-2xl border border-purple-500/40
-          shadow-[0_0_40px_rgba(236,72,153,0.25)]"
-        >
-          <h3 className="text-2xl font-bold mb-4 text-white">
-            Additional Contributions
-          </h3>
-          <p className="text-lg text-purple-200 leading-relaxed font-medium">
-            Executive Member of the RRC Club and CSI Member at KEC (2024–2025)
-          </p>
-        </motion.div>
       </div>
 
       {/* Certificate Modal */}
@@ -143,11 +142,15 @@ export function Certifications() {
               ✕
             </button>
 
-            <img
-              src={activeCert}
-              alt="Certificate"
-              className="w-full h-auto rounded-xl shadow-2xl"
-            />
+            {activeCert.toLowerCase().endsWith(".pdf") ? (
+              <iframe src={activeCert} title="Certificate PDF" className="w-full h-[75vh] rounded-xl bg-white" />
+            ) : (
+              <img
+                src={activeCert}
+                alt="Certificate"
+                className="w-full h-auto rounded-xl shadow-2xl"
+              />
+            )}
           </motion.div>
         </motion.div>
       )}

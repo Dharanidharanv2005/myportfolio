@@ -4,9 +4,9 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Srimathi Senthil | Full-Stack Developer Portfolio",
+  title: "Dharanidharan V | Software Engineer Portfolio",
   description:
-    "Aspiring Full-Stack Developer skilled in ReactJS, NodeJS, Python, and AI/ML. Explore my projects, achievements, and skills.",
+    "Aspiring Software Engineer. Explore my projects, achievements, certifications, and skills.",
 }
 
 export default function RootLayout({

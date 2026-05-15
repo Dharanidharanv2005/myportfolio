@@ -26,14 +26,20 @@ export function Skills() {
     {
       title: "Languages",
       icon: Code2,
-      skills: ["Java", "C", "Python", "JavaScript", "HTML/CSS"],
+      skills: ["Java", "C"],
       color: "from-blue-500 to-cyan-500",
     },
     {
-      title: "Frameworks",
+      title: "Frontend",
       icon: Zap,
-      skills: ["ReactJS", "NodeJS", "Flask", "TailwindCSS"],
+      skills: ["React", "HTML", "CSS"],
       color: "from-purple-500 to-pink-500",
+    },
+    {
+      title: "Backend",
+      icon: Zap,
+      skills: ["Node.js", "Express.js"],
+      color: "from-violet-500 to-fuchsia-500",
     },
     {
       title: "Databases",
@@ -50,19 +56,18 @@ export function Skills() {
     {
       title: "Tools",
       icon: Wrench,
-      skills: ["Git", "GitHub", "Figma", "VS Code", "Canva"],
+      skills: ["VS Code", "Git", "GitHub"],
       color: "from-indigo-500 to-purple-500",
     },
     {
-      title: "Key Strengths",
+      title: "Soft Skills",
       icon: Users,
       skills: [
-        "Time Management",
         "Communication",
-        "Adaptability",
+        "Team Work",
         "Problem-Solving",
         "Leadership",
-        "Critical Thinking",
+        "Self Learning",
       ],
       color: "from-pink-500 to-rose-500",
     },
@@ -557,30 +562,6 @@ export function Skills() {
                     })}
                   </div>
 
-                  {/* Category number indicator */}
-                  <motion.div
-                    className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white font-bold text-sm"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ 
-                      delay: catIndex * 0.15 + 0.4,
-                      type: "spring",
-                      stiffness: 200,
-                    }}
-                    animate={{
-                      rotate: [0, 360],
-                    }}
-                    transition={{
-                      rotate: {
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }
-                    }}
-                  >
-                    {String(catIndex + 1).padStart(2, '0')}
-                  </motion.div>
                 </motion.div>
               </motion.div>
             )
