@@ -1,6 +1,5 @@
 import express from "express"
 import nodemailer from "nodemailer"
-import Contact from "../models/Contact.js"
 
 const router = express.Router()
 
@@ -54,13 +53,6 @@ router.post("/submit", async (req, res) => {
       console.error('Error sending email:', sendErr)
       throw sendErr
     }
-
-    const newContact = new Contact({
-      email,
-      message,
-    })
-
-    await newContact.save()
 
     res.status(201).json({
       success: true,
